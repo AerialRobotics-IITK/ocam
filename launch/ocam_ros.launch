@@ -4,12 +4,14 @@
   <arg name="resolution" default="0"/>
   <!-- 0: 1280x960, 1: 1280x720, 2: 640x480, 3: 640x360 -->
   <arg name="frame_rate" default="30"/>
-  <arg name="exposure" default="700"/>
+  <arg name="exposure" default="600"/>
   <arg name="gain" default="150"/>
   <arg name="wb_blue" default="200"/>
   <arg name="wb_red" default="160"/>
   <arg name="auto_exposure" default="false"/>
   <arg name="show_image" default="false"/>
+  <arg name="show_rqt_image_view" default="false"/>
+
   <arg name="camera_name" default="camera"/>
   <arg name="device_info" default="package://ocam/config/camera.yaml"/>
   <arg name="undistort" default="true"/>
@@ -29,4 +31,8 @@
     <param name="device_info" value="$(arg device_info)"/>
     <param name="undistort" value="$(arg undistort)"/>
   </node>
+
+  <group if="$(arg show_rqt_image_view)">
+    <node pkg="rqt_image_view" type="rqt_image_view" name="rqt_image_view" />
+  </group>
 </launch>
