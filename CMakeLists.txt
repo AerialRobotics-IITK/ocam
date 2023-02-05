@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 2.8.3)
 project(ocam)
 
 add_definitions(-std=c++11)
-#set(CMAKE_CXX_FLAGS "-std=c++11 -O2 ${CMAKE_CXX_FLAGS}")
 
+# set(CMAKE_CXX_FLAGS "-std=c++11 -O2 ${CMAKE_CXX_FLAGS}")
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
@@ -17,6 +17,7 @@ find_package(catkin REQUIRED COMPONENTS
 find_package(Boost REQUIRED COMPONENTS system)
 find_package(OpenCV REQUIRED)
 
+# find_package(OpenCV 3.1.0 EXACT REQUIRED HINTS path to build)
 generate_dynamic_reconfigure_options(
   cfg/cam.cfg
 )
@@ -24,18 +25,18 @@ generate_dynamic_reconfigure_options(
 catkin_package(
   INCLUDE_DIRS include
   CATKIN_DEPENDS
-    roscpp
-    std_msgs
-    cv_bridge
-    image_transport
-    camera_info_manager
-    sensor_msgs
-    dynamic_reconfigure
+  roscpp
+  std_msgs
+  cv_bridge
+  image_transport
+  camera_info_manager
+  sensor_msgs
+  dynamic_reconfigure
 )
 
 include_directories(
-    include
-    ${catkin_INCLUDE_DIRS}
+  include
+  ${catkin_INCLUDE_DIRS}
 )
 
 add_executable(ocam src/oCam.cpp src/withrobot_camera.cpp src/withrobot_utility.cpp)
